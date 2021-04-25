@@ -1,33 +1,29 @@
-//#資料
-//https://cyfangnotepad.blogspot.com/2013/09/javascripthtml.html
-//https://www.codegrepper.com/code-examples/c/javascript+page+is+loaded
-
 //變數
 //字典 0 name 1 homepage 2 searchpage(!q會被單字替換) 3 word url (自動生成)
-var Dic = [];
-Dic[0] = [
-  "cambridge",
-  "https://dictionary.cambridge.org/",
-  "https://dictionary.cambridge.org/us/dictionary/english/!q"
-];
+let Dic = [];
+// Dic[0] = [
+//   "cambridge",
+//   "https://dictionary.cambridge.org/",
+//   "https://dictionary.cambridge.org/us/dictionary/english/!q"
+// ];
 
-Dic[1] = [
-  "merriam webster",
-  "https://www.merriam-webster.com/",
-  "https://www.merriam-webster.com/dictionary/!q"
-];
+// Dic[1] = [
+//   "merriam webster",
+//   "https://www.merriam-webster.com/",
+//   "https://www.merriam-webster.com/dictionary/!q"
+// ];
 
-Dic[2] = [
-  "dictionary.com",
-  "https://www.dictionary.com/",
-  "https://www.dictionary.com/browse/!q"
-];
+// Dic[2] = [
+//   "dictionary.com",
+//   "https://www.dictionary.com/",
+//   "https://www.dictionary.com/browse/!q"
+// ];
 
-Dic[3] = [
-  "cambridge 繁中",
-  "https://dictionary.cambridge.org/",
-  "https://dictionary.cambridge.org/us/dictionary/english-chinese-traditional/!q"
-];
+// Dic[3] = [
+//   "cambridge 繁中",
+//   "https://dictionary.cambridge.org/",
+//   "https://dictionary.cambridge.org/us/dictionary/english-chinese-traditional/!q"
+// ];
 
 //Config 方法 myWord fo(frame open) cdic(custom dic) to mode
 var Config = {

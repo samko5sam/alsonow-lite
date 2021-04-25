@@ -8,6 +8,7 @@ const del = require('del')
 const cleanCSS = require('gulp-clean-css')
 const concat = require('gulp-concat')
 const imagemin = require('gulp-imagemin')
+const strip = require('gulp-strip-comments')
 
 async function runimagemin(cb) {
   src('src/img/*')
@@ -19,7 +20,7 @@ function defaultTask(cb) {
   cb()
 }
 function runuglify(cb) {
-  return src("src/js/*.js")
+  return src("src/minjs/*.js")
 		// .pipe(rename("bundle.min.js"))
 		.pipe(uglify())
 		.pipe(dest("src/minjs"));
@@ -31,7 +32,7 @@ function runconcatjs(cb) {
     'src/minjs/notify.min.js',
     'src/minjs/jquery.qrcode.min.js',
     'src/minjs/cookies.js',
-    'src/minjs/appEE.js'
+    'src/minjs/app.js'
   ])
     .pipe(concat('bundle.js'))
     .pipe(dest('dist'));
@@ -50,7 +51,7 @@ function lint(cb) {
     .pipe(jshint.reporter('jshint-stylish'));
 }
 function minify(cb) {
-  return src('src/*.html')
+  return src('src/minhtml/*.html')
     .pipe(htmlmin({collapseWhitespace: true}))
     .pipe(dest('dist'));
 }
@@ -58,12 +59,27 @@ function clean(cb) {
   return del(['dist'])
 }
 function cleanmindir(cb) {
-  return del(['src/minjs','src/mincss'])
+  return del(['src/minjs','src/mincss','src/minhtml'])
 }
 function minify_css(cb) {
   return src('src/css/*.css')
     .pipe(cleanCSS({compatibility: 'ie8'}))
     .pipe(dest('src/mincss'))
+}
+function stripjsfile(cb) {
+  return src('src/js/*.js')
+    .pipe(strip())
+    .pipe(dest('src/minjs'));
+}
+function stripcssfile(cb) {
+  return src('src/css/style.css')
+    .pipe(strip())
+    .pipe(dest('src/mincss'));
+}
+function striphtmlfile(cb) {
+  return src('src/*.html')
+    .pipe(strip())
+    .pipe(dest('src/minhtml'));
 }
 
 exports.runimagemin = runimagemin
@@ -75,6 +91,9 @@ exports.minify = minify
 exports.clean = clean
 exports.minify_css = minify_css
 exports.cleanmindir = cleanmindir
+exports.stripjsfile = stripjsfile
+exports.stripcssfile = stripcssfile
+exports.striphtmlfile = striphtmlfile
 
-exports.build = series(clean, minify , runuglify, minify_css ,runconcatjs,runconcatcss,runimagemin,cleanmindir)
+exports.build = series(clean,stripjsfile,striphtmlfile, minify , runuglify, minify_css ,runconcatjs,runconcatcss,runimagemin,cleanmindir)
 exports.default = defaultTask
