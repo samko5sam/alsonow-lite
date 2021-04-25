@@ -1,0 +1,222 @@
+<!DOCTYPE html><!-- alsonow英英 v5.1 -->
+<html lang="zh" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>alsonow | 多個網路英英字典一次搜尋</title>
+  <meta name="author" content="samko5sam">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="icon" type="image/png" href="img/alsonow_icon.png">
+  <link rel="stylesheet" href="bundle.css">
+</head>
+<body>
+  <!-- navbar -->
+  <div class="p-4 bg-info text-white">
+    連結網站之內容非alsonow提供
+    cookies 用來記設定
+  </div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <a href="#TOP" class="navbar-brand">
+      <img src="img/alsonow_icon.png" alt="alsonow" width="30px">
+    </a>
+
+    <div class="">
+      <span class="fillinMyWord" id="" style="">英英</span>
+      <span class=""> | alsonow</span>
+    </div>
+
+    <!-- <button type="button" class="navbar-toggler navbar-toggler-right" data-toggle="collapse" data-target="#navContent">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navContent">
+  <ul class="navbar-nav mr-auto">
+  <li class="nav-item">
+  <span id="addtobtn"></span>
+</li>
+<li class="nav-item">
+<a href="javascript:;" onclick="scrolltotop()" class="nav-link">TOP</a>
+</li>
+</ul>
+</div> -->
+</nav>
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-secondary fixed-bottom">
+<div id="keyWordDiv" class="">
+<span class="wordCon ankimode-none">
+<p>搜尋關鍵字為：<span class="fillinMyWord">無</span></p>
+</span>
+</div>
+</nav> -->
+
+<noscript>
+  <div class="jumbotron">
+    <h1>NO javascript</h1>
+    <p>您的瀏覽器不支援javascript，所以不能使用相關功能</p>
+    <p><a class="btn btn-primary btn-lg" href="https://alsonow.neocities.org/">GO HOME</a></p>
+  </div>
+</noscript>
+<!-- container -->
+<div class="container">
+  <div class="jumbotron">
+    <p class="" style="">ALSONOW - ALL搜NOW</p>
+    <form method="get" class="form-inline">
+      <div class="form-group text-align-center">
+        <div class="input-group input-group-lg">
+          <input type="text" name="myWord" id="myWord" class="form-control text-align-center" placeholder="輸入搜尋">
+          <input type="submit" value="GO" class="">
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- <form method="get" class="form-inline">
+  <div class="form-group">
+  <div class="input-group input-group-sm">
+  <div class="input-group-prepend">
+  <span class="input-group-text">自訂搜尋</span>
+</div>
+<input type="text" name="cdic" id="cdic" class="form-control">
+<small><a href="#learn-more-about-cdic">了解更多</a></small>
+</div>
+</div>
+<div class="form-group">
+<input type="checkbox" name="fo" value="y" id="fo">
+<label for="fo">open frame</label>
+</div>
+<div class="form-group">
+<div class="input-group input-group-sm">
+<div class="input-group-prepend">
+<span class="input-group-text">TO</span>
+</div>
+<input type="number" name="to" id="to" class="form-control">
+</div>
+</div>
+</form> -->
+
+<!--自動生成連結-->
+<div class="modal fade" id="DicLink-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">字典連結</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body" id="DicLink">
+
+      </div>
+    </div>
+  </div>
+</div>
+<div id="myDicLink" class=""></div>
+
+<!-- 自動生成連結並開在頁面內 -->
+<div id="myDicFrame"></div>
+
+<!-- other -->
+<hr><p class="text-align-center">其他</p><hr>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#config-modal" id="">設定</button>
+<div class="modal fade" id="config-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">設定</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body" id="">
+        <!-- setting form -->
+        <form method="get" class="">
+          <div class="form-group">
+            <div class="input-group input-group-md">
+              <div class="input-group-prepend">
+                <span class="input-group-text">自訂搜尋</span>
+              </div>
+              <input type="text" name="cdic" id="cdic" class="form-control">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label">open frame</label>
+            <div class="radio">
+              <label><input type="radio" name="fo" value="y" id="fo-1">開啟</label>
+            </div>
+            <div class="radio">
+              <label><input type="radio" name="fo" value="n" id="fo-2" checked>不開啟</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label" for="mode">mode</label>
+            <select name="mode" id="mode" class="form-control">
+              <option value="">一般</option>
+              <option value="anki">anki</option>
+              <option value="webExtension">webExtension</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <div class="input-group input-group-md">
+              <div class="input-group-prepend">
+                <span class="input-group-text">TO</span>
+              </div>
+              <input type="number" name="to" id="to" class="form-control">
+            </div>
+          </div>
+
+          <input type="submit" value="apply" class="btn btn-primary">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mylocationQRCODEModal">本頁單字QRcode</button>
+<div class="modal fade" id="mylocationQRCODEModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">本頁單字QRcode</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body text-align-center">
+        <a href="" target="_blank" id="locationQRCODElink">
+          <div id="locationQRCODE"></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<button type="button" onclick="listAllDic()" class="btn btn-primary" data-toggle="modal" data-target="#listAllDicModal">字典資訊</button>
+<div class="modal fade" id="listAllDicModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">字典資訊</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body" id="listAllDicFillin">
+
+      </div>
+    </div>
+  </div>
+</div>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#learn-more-about-cdic-modal" id="learn-more-about-cdic">關於自訂搜尋</button>
+<div class="modal fade" id="learn-more-about-cdic-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">自訂搜尋</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body" id="">
+        <h2>例子：</h2>
+        <p>https://tw.voicetube.com/definition/!q</p>
+        <p>alsonow會把<code>!q</code>的部分換成搜尋的字</p>
+        <p>用<code>!s</code>分開不同網址</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<span id="addtobtn"></span>
+
+</div>
+
+<script src="bundle.js"></script>
+</body>
+</html>
